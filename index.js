@@ -679,10 +679,10 @@ const EXCHANGE_ADDRESS = '0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0';
 const exchangeContract = new web3.eth.Contract(EXCHANGE_ABI, EXCHANGE_ADDRESS);
 
 // Minimum eth to swap
-const ETH_AMOUNT = web3.utils.toWei('1', 'Ether');
+const ETH_AMOUNT = web3.utils.toWei('0.1', 'Ether');
 console.log('Eth Amount', ETH_AMOUNT);
 
-const ETH_SELL_PRICE = web3.utils.toWei('200', 'Ether'); // 200 Dai a.k.a. $200 USD
+const ETH_SELL_PRICE = web3.utils.toWei('20', 'Ether'); // 200 Dai a.k.a. $200 USD
 
 async function sellEth(ethAmount, daiAmount) {
   // Set Deadline 1 minute from now
@@ -693,7 +693,7 @@ async function sellEth(ethAmount, daiAmount) {
 
   // Transaction Settings
   const SETTINGS = {
-    gasLimit: 8000000, // Override gas settings: https://github.com/ethers-io/ethers.js/issues/469
+    gasLimit: 300000, // Override gas settings: https://github.com/ethers-io/ethers.js/issues/469
     gasPrice: web3.utils.toWei('50', 'Gwei'),
     from: process.env.ACCOUNT, // Use your account here
     value: ethAmount, // Amount of Ether to Swap
