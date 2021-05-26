@@ -37,24 +37,22 @@ async function monitorPrice() {
   console.log('Checking price...');
   monitoringPrice = true;
 
-  try {
-    // Checking Prices
-    const busdAmount = new BN(
-      await pcsrContract.methods
-        .getAmountsOut('1000000000000000000', [
-          bscConstants.BUSD_ADDRESS,
-          bscConstants.WBNB_ADDRESS,
-        ])
-        .call()
-    );
-    const price = web3.utils.fromWei(busdAmount.toString(), 'Ether');
-    console.log('BUSD Price:', price, ' WBNB');
-  } catch (error) {
-    console.error(error);
-    monitoringPrice = false;
-    clearInterval(priceMonitor);
-    return;
-  }
+  pcsrContract.methods
+    .getAmountsOut('1000000000000000000', [
+      bscConstants.WBNB_ADDRESS,
+      bscConstants.BUSD_ADDRESS,
+    ])
+    .call()
+    .then((res) => {
+      const price = web3.utils.fromWei(res[1], 'Ether');
+      console.log('WBNB Price:', price, ' BUSD');
+    })
+    .catch((error) => {
+      console.error(error);
+      monitoringPrice = false;
+      clearInterval(priceMonitor);
+      return;
+    });
 
   monitoringPrice = false;
 }
