@@ -5,7 +5,7 @@ const Web3 = require('web3');
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const _ = require('lodash');
 
-const { bscConstants } = require('./bscConstanst');
+const { bscConstants: bscConstants } = require('./bscConstanst');
 const PCWR_ABI = require('./abis/pancakeswapRouterAbi');
 
 // SERVER CONFIG
