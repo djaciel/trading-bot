@@ -1,4 +1,4 @@
-[
+const pancakeswapRouterAbi = [
   {
     inputs: [
       { internalType: 'address', name: '_factory', type: 'address' },
@@ -354,3 +354,5 @@
   },
   { stateMutability: 'payable', type: 'receive' },
 ];
+
+module.exports = pancakeswapRouterAbi;
